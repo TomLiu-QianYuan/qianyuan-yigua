@@ -1,3 +1,6 @@
+import streamlit as st
+import borax.calendars as bc
+
 di_zhi = {
     "子": 1,
     "丑": 2,
@@ -119,10 +122,6 @@ def get_shi(time: int):
         return di_zhi_list[11]
 
 
-import streamlit as st
-import borax.calendars as bc
-import functions
-
 st.code('''
 观物吟
 一物从来有一身，一身还有一乾坤。
@@ -155,7 +154,7 @@ if start:
         time.year,
         time.month,
         time.day,
-    ).strftime('%G') + functions.get_shi(time2) + "时")
+    ).strftime('%G') + get_shi(time2) + "时")
     # print(functions.di_zhi.values()[0])
     if mode_to_select == '时间起卦':
         time_ = bc.LunarDate.from_solar_date(
@@ -163,7 +162,7 @@ if start:
             time.month,
             time.day,
         ).strftime('%G')
-        year_gz = functions.di_zhi[time_[1]]
+        year_gz = di_zhi[time_[1]]
         # yue_gz = functions.di_zhi[time_[4]]
         # ri_gz = functions.di_zhi[time_[7]]
         yue = bc.LunarDate.from_solar_date(
@@ -191,16 +190,16 @@ if start:
         print(a, b, c)
         three_num = [a, b, c]
     # 开始起卦
-    result = list(functions.get_gua(three_num[0], three_num[1], three_num[2]))
+    result = list(get_gua(three_num[0], three_num[1], three_num[2]))
     print(result[0])
     print(three_num, 'b')
     show = []
 
     for x in range(0, 2):
 
-        zhu_gua = str(functions.gua_to_images[result[0][x]])
-        hu_gua = str(functions.gua_to_images[result[1][x]])
-        bian_gua = str(functions.gua_to_images[result[2][x]])
+        zhu_gua = str(gua_to_images[result[0][x]])
+        hu_gua = str(gua_to_images[result[1][x]])
+        bian_gua = str(gua_to_images[result[2][x]])
         print(zhu_gua, '\n')
         print(hu_gua, '\n')
         print(bian_gua)
