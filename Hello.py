@@ -1,3 +1,6 @@
+import datetime
+
+import pytz
 import streamlit as st
 import borax.calendars as bc
 
@@ -131,8 +134,9 @@ st.code('''
 ''')
 
 time = st.date_input("日期")
-time2 = st.time_input("时间").hour
-print(time2, 'h')
+time.fromtimestamp(datetime.datetime.now(pytz.timezone("ASIA/ShangHai")).timestamp())
+time2 = st.time_input("时间", value=datetime.datetime.now(pytz.timezone("ASIA/ShangHai")))
+
 # time = st.time_input("选择时间:",datetime)
 
 mode_to_select = st.selectbox('起卦方式', ['时间起卦', '报数起卦'])
