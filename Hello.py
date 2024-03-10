@@ -99,6 +99,7 @@ def get_gua(a: int, b: int, c: int):
 
 
 def get_shi(time: int):
+    print('tt', time)
     if 1 <= time < 3:
         return di_zhi_list[0]
     elif 3 <= time < 5:
@@ -133,8 +134,7 @@ st.code('''
 仙人亦有两般话，道不虚传只在人。
 ''')
 
-time = st.date_input("日期")
-time.fromtimestamp(datetime.datetime.now(pytz.timezone("ASIA/ShangHai")).timestamp())
+time = st.date_input("日期", value=datetime.datetime.now(pytz.timezone("ASIA/ShangHai")).date())
 time2 = st.time_input("时间", value=datetime.datetime.now(pytz.timezone("ASIA/ShangHai")))
 time2 = time2.hour
 # time = st.time_input("选择时间:",datetime)
