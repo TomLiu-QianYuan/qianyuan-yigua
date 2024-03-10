@@ -136,7 +136,7 @@ st.code('''
 time = st.date_input("日期")
 time.fromtimestamp(datetime.datetime.now(pytz.timezone("ASIA/ShangHai")).timestamp())
 time2 = st.time_input("时间", value=datetime.datetime.now(pytz.timezone("ASIA/ShangHai")))
-
+time2 = time2.hour
 # time = st.time_input("选择时间:",datetime)
 
 mode_to_select = st.selectbox('起卦方式', ['时间起卦', '报数起卦'])
