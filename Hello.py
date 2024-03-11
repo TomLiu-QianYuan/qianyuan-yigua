@@ -219,22 +219,22 @@ if page == "起卦":
         # print(result[0])
         # print(three_num, 'b')
         show = []
-
+        print("-c:",-c)
         for x in range(0, 2):
 
             zhu_gua = str(gua_to_images[result[0][x]])
             hu_gua = str(gua_to_images[result[1][x]])
             bian_gua = str(gua_to_images[result[2][x]])
-            print(zhu_gua, '\n')
-            print(hu_gua, '\n')
-            print(bian_gua)
+            # print(zhu_gua, '\n')
+            # print(hu_gua, '\n')
+            # print(bian_gua)
             for m in range(0, 3):
                 show.append(zhu_gua.split('\n')[m])
                 show.append('\t\t')
                 show.append(hu_gua.split('\n')[m])
                 show.append('\t\t')
                 show.append(bian_gua.split('\n')[m])
-                print(x * 3 + m)
+                # print(x * 3 + m)
                 if (x * 3 + m) == -c:
                     show.append('\tO')
                 show.append('\n')
