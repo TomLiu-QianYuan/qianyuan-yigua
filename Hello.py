@@ -76,7 +76,7 @@ def get_gua(a: int, b: int, c: int):
         c = 6
     a = (a + 8) % 8 - 1
     b = (b + 8) % 8 - 1
-    c = (c + 6) % 6 - 1
+    c = (c + 6) % 6
     zhu_gua = [
         xian_tian_gua[a], xian_tian_gua[b]
     ]
@@ -84,14 +84,15 @@ def get_gua(a: int, b: int, c: int):
               xian_tian_gua[a][2] + xian_tian_gua[b][0] + xian_tian_gua[b][1]
               ]
     temp = list(xian_tian_gua[a] + xian_tian_gua[b])
-    print(c)
+    print('x',c)
+    print('xz', 5-c)
     print(temp)
-    if temp[5 - c] == '0':
+    if temp[5-c] == '0':
         # print('动阴')
-        temp[5 - c] = '1'
+        temp[5-c] = '1'
     else:
         # print('动阳')
-        temp[5 - c] = '0'
+        temp[5-c] = '0'
     # print(temp)
     bian_gua = [temp[0] + temp[1] + temp[2], temp[3] + temp[4] + temp[5]]
     return ([gua_ming[zhu_gua[0]], gua_ming[zhu_gua[1]]],
@@ -240,19 +241,13 @@ if page == "起卦":
             # print(show)
         st.code("".join(show))
 elif page == "书籍":
-    
-    # st.text(os.getcwd())
-    if "书籍" not in os.getcwd():
-        os.chdir("书籍")
-    list_files = os.listdir()
+    list_files = os.listdir("books")
     file_to_read = st.selectbox("书籍选择", list_files)
-    # st.code(list_files)
 
     if file_to_read in list_files:
-        if "书籍" not in os.getcwd():
-            os.chdir("书籍")        
-        data = open(file_to_read, 'r', encoding='utf-8').read()
+        data = open("books\\" + file_to_read, 'r', encoding='utf-8').read()
         # data_2 = ''
         # for i in data.split('；'):
         #     data_2 += i + '；\n'
+
         st.code(data)
