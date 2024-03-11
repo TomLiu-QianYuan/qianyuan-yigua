@@ -77,8 +77,8 @@ def get_gua(a: int, b: int, c: int):
     a = (a + 8) % 8 - 1
     b = (b + 8) % 8 - 1
     c = (c + 6) % 6 
-    print("6-c:",6-c)
-    st.code(str(6-c)+" "+str(-c))
+    # print("6-c:",6-c)
+    # st.code(str(6-c)+" "+str(-c))
     print("-c:",-c)
         
     zhu_gua = [
