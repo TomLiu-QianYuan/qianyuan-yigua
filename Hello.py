@@ -77,6 +77,9 @@ def get_gua(a: int, b: int, c: int):
     a = (a + 8) % 8 - 1
     b = (b + 8) % 8 - 1
     c = (c + 6) % 6 
+    print("6-c:",6-c)
+    print("-c:",-c)
+        
     zhu_gua = [
         xian_tian_gua[a], xian_tian_gua[b]
     ]
@@ -176,7 +179,6 @@ if page == "起卦":
 
     if start:
         
-        print("-c:",6-c)
         st.code(bc.LunarDate.from_solar_date(
             time.year,
             time.month,
