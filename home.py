@@ -92,7 +92,7 @@ def get_gua(a: int, b: int, c: int):
         temp[-c] = '1'
     else:
         # print('动阳')
-        temp[-6] = '0'
+        temp[-c] = '0'
     # print(temp)
     bian_gua = [temp[0] + temp[1] + temp[2], temp[3] + temp[4] + temp[5]]
     return ([gua_ming[zhu_gua[0]], gua_ming[zhu_gua[1]]],
@@ -235,7 +235,7 @@ if start:
             show.append('\t\t')
             show.append(bian_gua.split('\n')[m])
             print(x * 3 + m)
-            if (x * 3 + m) == c-6:
+            if (x * 3 + m) == 6-c:
                 show.append('\tO')
             show.append('\n')
         # print(show)
