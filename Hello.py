@@ -1,4 +1,5 @@
 import datetime
+import random
 
 import pytz
 import streamlit as st
@@ -126,6 +127,11 @@ def get_shi(time: int):
         return di_zhi_list[11]
 
 
+st.set_page_config(page_title="乾元易卦",
+                   page_icon=None,
+                   layout="centered",
+                   initial_sidebar_state="auto",
+                   menu_items=None)
 st.code('''
 观物吟
 一物从来有一身，一身还有一乾坤。
@@ -133,13 +139,12 @@ st.code('''
 天向一中分造化，人与心上起经纶。
 仙人亦有两般话，道不虚传只在人。
 ''')
-
 time = st.date_input("日期", value=datetime.datetime.now(pytz.timezone("ASIA/ShangHai")).date())
 time2 = st.time_input("时间", value=datetime.datetime.now(pytz.timezone("ASIA/ShangHai")))
 time2 = time2.hour
 # time = st.time_input("选择时间:",datetime)
 
-mode_to_select = st.selectbox('起卦方式', ['时间起卦', '报数起卦'])
+mode_to_select = st.selectbox('起卦方式', ['时间起卦', '报数起卦', '随机起卦'])
 # print(mode_to_select)
 if mode_to_select == '报数起卦':
     three_num = st.text_input(label='请输入三个整数')
@@ -152,7 +157,13 @@ if mode_to_select == '报数起卦':
         three_num = [int(three_num[0]), int(three_num[1]), int(three_num[2])]
     elif len(three_num) > 3:
         st.warning("你暂时只能填写三个数字哦")
+
+if mode_to_select == '随机起卦':
+    c = random.randint(1, 64)
+    three_num = [random.randint(1, 64), random.randint(1, 64), c]
+
 start = st.button(label="开始起卦")
+
 if start:
     st.code(bc.LunarDate.from_solar_date(
         time.year,
