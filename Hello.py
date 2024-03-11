@@ -173,7 +173,7 @@ if page == "起卦":
             st.warning("你暂时只能填写三个数字哦")
 
     if mode_to_select == '随机起卦':
-        c = random.randint(1, 64)
+        c = random.randint(7, 64)
         three_num = [random.randint(1, 64), random.randint(1, 64), c]
 
     start = st.button(label="开始起卦")
