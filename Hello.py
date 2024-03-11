@@ -235,7 +235,7 @@ if page == "起卦":
                 show.append('\t\t')
                 show.append(bian_gua.split('\n')[m])
                 print(x * 3 + m)
-                if (x * 3 + m) == 6-c:
+                if (x * 3 + m) == c-6:
                     show.append('\tO')
                 show.append('\n')
             # print(show)
