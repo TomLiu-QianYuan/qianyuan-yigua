@@ -176,7 +176,7 @@ if page == "起卦":
 
     if start:
         
-        print("-c:",-c)
+        print("-c:",6-c)
         st.code(bc.LunarDate.from_solar_date(
             time.year,
             time.month,
@@ -236,7 +236,7 @@ if page == "起卦":
                 show.append('\t\t')
                 show.append(bian_gua.split('\n')[m])
                 # print(x * 3 + m)
-                if (x * 3 + m) == -c:
+                if (x * 3 + m) == 6-c:
                     show.append('\tO')
                 show.append('\n')
             # print(show)
