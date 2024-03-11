@@ -241,13 +241,13 @@ if page == "起卦":
         st.code("".join(show))
 elif page == "书籍":
     st.text(os.getcwd())
-    list_files = os.listdir("书籍")
+    list_files = os.listdir(os.getcwd())
     file_to_read = st.selectbox("书籍选择", list_files)
     st.code(list_files)
 
     if file_to_read in list_files:
         
-        data = open("书籍\\"+file_to_read, 'r', encoding='utf-8').read()
+        data = open(os.getcwd()+file_to_read, 'r', encoding='utf-8').read()
         # data_2 = ''
         # for i in data.split('；'):
         #     data_2 += i + '；\n'
