@@ -175,6 +175,8 @@ if page == "起卦":
     start = st.button(label="开始起卦")
 
     if start:
+        
+        print("-c:",-c)
         st.code(bc.LunarDate.from_solar_date(
             time.year,
             time.month,
@@ -219,7 +221,6 @@ if page == "起卦":
         # print(result[0])
         # print(three_num, 'b')
         show = []
-        print("-c:",-c)
         for x in range(0, 2):
 
             zhu_gua = str(gua_to_images[result[0][x]])
