@@ -87,12 +87,12 @@ def get_gua(a: int, b: int, c: int):
     # print('x',c)
     # print('xz', 6-c)
     print(temp)
-    if temp[c-6] == '0':
+    if temp[-c] == '0':
         # print('动阴')
-        temp[c-6] = '1'
+        temp[-c] = '1'
     else:
         # print('动阳')
-        temp[c-6] = '0'
+        temp[-c] = '0'
     # print(temp)
     bian_gua = [temp[0] + temp[1] + temp[2], temp[3] + temp[4] + temp[5]]
     return ([gua_ming[zhu_gua[0]], gua_ming[zhu_gua[1]]],
