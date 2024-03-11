@@ -87,12 +87,12 @@ def get_gua(a: int, b: int, c: int):
     # print('x',c)
     # print('xz', 6-c)
     print(temp)
-    if temp[6-c] == '0':
+    if temp[c-6] == '0':
         # print('动阴')
-        temp[6-c] = '1'
+        temp[c-6] = '1'
     else:
         # print('动阳')
-        temp[6-c] = '0'
+        temp[c-6] = '0'
     # print(temp)
     bian_gua = [temp[0] + temp[1] + temp[2], temp[3] + temp[4] + temp[5]]
     return ([gua_ming[zhu_gua[0]], gua_ming[zhu_gua[1]]],
@@ -235,17 +235,17 @@ if page == "起卦":
                 show.append('\t\t')
                 show.append(bian_gua.split('\n')[m])
                 print(x * 3 + m)
-                if (x * 3 + m) == 6 - c:
+                if (x * 3 + m) == c-6:
                     show.append('\tO')
                 show.append('\n')
             # print(show)
         st.code("".join(show))
 elif page == "书籍":
-    list_files = os.listdir("books")
+    list_files = os.listdir("书籍")
     file_to_read = st.selectbox("书籍选择", list_files)
 
     if file_to_read in list_files:
-        data = open("books\\" + file_to_read, 'r', encoding='utf-8').read()
+        data = open("书籍\\" + file_to_read, 'r', encoding='utf-8').read()
         # data_2 = ''
         # for i in data.split('；'):
         #     data_2 += i + '；\n'
