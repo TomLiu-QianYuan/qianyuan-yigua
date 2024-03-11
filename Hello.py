@@ -241,12 +241,12 @@ if page == "起卦":
         st.code("".join(show))
 elif page == "书籍":
     
-    st.text(os.getcwd())
+    # st.text(os.getcwd())
     if "书籍" not in os.getcwd():
         os.chdir("书籍")
     list_files = os.listdir()
     file_to_read = st.selectbox("书籍选择", list_files)
-    st.code(list_files)
+    # st.code(list_files)
 
     if file_to_read in list_files:
         if "书籍" not in os.getcwd():
