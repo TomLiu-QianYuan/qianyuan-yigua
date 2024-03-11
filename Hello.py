@@ -158,7 +158,7 @@ if page == "起卦":
     time2 = time2.hour
     # time = st.time_input("选择时间:",datetime)
 
-    mode_to_select = st.selectbox('起卦方式', ['时间起卦', '报数起卦', '随机起卦'])
+    mode_to_select = st.selectbox('起卦方式', ['时间起卦', '报数起卦'])
     # print(mode_to_select)
     if mode_to_select == '报数起卦':
         three_num = st.text_input(label='请输入三个整数')
@@ -172,9 +172,9 @@ if page == "起卦":
         elif len(three_num) > 3:
             st.warning("你暂时只能填写三个数字哦")
 
-    if mode_to_select == '随机起卦':
-        c = random.randint(7, 64)
-        three_num = [random.randint(1, 64), random.randint(1, 64), c]
+    # if mode_to_select == '随机起卦':
+    #     c = random.randint(7, 64)
+    #     three_num = [random.randint(1, 64), random.randint(1, 64), c]
 
     start = st.button(label="开始起卦")
 
