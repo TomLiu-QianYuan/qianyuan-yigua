@@ -240,6 +240,7 @@ if page == "起卦":
             # print(show)
         st.code("".join(show))
 elif page == "书籍":
+    st.text(os.getcwd())
     list_files = os.listdir("书籍")
     file_to_read = st.selectbox("书籍选择", list_files)
     st.code(list_files)
