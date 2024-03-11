@@ -247,7 +247,7 @@ elif page == "书籍":
     file_to_read = st.selectbox("书籍选择", list_files)
 
     if file_to_read in list_files:
-        data = open("书籍\\" + file_to_read, 'r', encoding='utf-8').read()
+        data = open(os.getcwd()+"\\书籍\\" + file_to_read, 'r', encoding='utf-8').read()
         # data_2 = ''
         # for i in data.split('；'):
         #     data_2 += i + '；\n'
