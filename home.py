@@ -21,6 +21,7 @@ di_zhi = {
     "亥": 12,
 }
 di_zhi_list = [
+    "子",
     "丑",
     "寅",
     "卯",
@@ -31,8 +32,7 @@ di_zhi_list = [
     "申",
     "酉",
     "戌",
-    "亥",
-"子"]
+    "亥"]
 gua_to_images = {
     "乾": "▀▀▀▀▀▀\n▀▀▀▀▀▀\n▀▀▀▀▀▀",
     "兑": "▀▀  ▀▀\n▀▀▀▀▀▀\n▀▀▀▀▀▀",
@@ -66,8 +66,11 @@ gua_ming = {
     '000': "坤"
 }
 
+dy_c = 0
+
 
 def get_gua(a: int, b: int, c: int):
+    global dy_c
     if a == 0:
         a = 8
     if b == 0:
@@ -93,6 +96,8 @@ def get_gua(a: int, b: int, c: int):
     else:
         # print('动阳')
         temp[-c] = '0'
+        # print("-c:",-c)
+    dy_c = -c
     # print(temp)
     bian_gua = [temp[0] + temp[1] + temp[2], temp[3] + temp[4] + temp[5]]
     return ([gua_ming[zhu_gua[0]], gua_ming[zhu_gua[1]]],
@@ -162,8 +167,9 @@ if mode_to_select == '报数起卦':
         c = int(three_num[2])
         if c > 6:
             c = c % 6
-        if c == 6:
+        elif c == 6 or c <= 0:
             c = 6
+
         three_num = [int(three_num[0]), int(three_num[1]), int(three_num[2])]
     elif len(three_num) > 3:
         st.warning("你暂时只能填写三个数字哦")
@@ -212,6 +218,7 @@ if start:
             c = c % 6
         elif c == 6:
             c = 6
+
         print(a, b, c)
         three_num = [a, b, c]
     # 开始起卦
@@ -225,18 +232,35 @@ if start:
         zhu_gua = str(gua_to_images[result[0][x]])
         hu_gua = str(gua_to_images[result[1][x]])
         bian_gua = str(gua_to_images[result[2][x]])
-        print(zhu_gua, '\n')
-        print(hu_gua, '\n')
-        print(bian_gua)
+
+        # print(zhu_gua, '\n')
+        # print(hu_gua, '\n')
+        # print(bian_gua)
         for m in range(0, 3):
+            show.append('\n')
             show.append(zhu_gua.split('\n')[m])
+            # .replace(
+            #             '1', ''))
+            #             .replace('1', '')
+            #             .replace('1', '')
+            #             .replace('1', '')
+            #             .replace('1', '')
+            #             .replace('1', '')
+            #             .replace('1', '')
+            #
+            #             )
             show.append('\t\t')
             show.append(hu_gua.split('\n')[m])
             show.append('\t\t')
             show.append(bian_gua.split('\n')[m])
-            print(x * 3 + m)
-            if (x * 3 + m) == 6-c:
+
+            # print(x * 3 + m)
+            print("动爻:", dy_c)
+            if dy_c <0:
+                dy_c = 6+dy_c
+            print((x * 3 + m), dy_c)
+            if (x * 3 + m) == dy_c:
                 show.append('\tO')
-            show.append('\n')
+
         # print(show)
     st.code("".join(show))
