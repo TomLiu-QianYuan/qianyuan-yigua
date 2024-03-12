@@ -162,8 +162,10 @@ time2 = time2.hour
 mode_to_select = st.selectbox('起卦方式', ['时间起卦', '报数起卦', '随机起卦'])
 # print(mode_to_select)
 if mode_to_select == '报数起卦':
-    three_num = st.text_input(label='请输入三个整数',placeholder="123")
-    if len(three_num) == 3:
+    three_num = st.text_input(label='请输入三个整数', placeholder="321")
+    if len(three_num) < 3 and three_num != []:
+        st.warning("你需要填写3个数字，格式如:123")
+    elif len(three_num) == 3:
         c = int(three_num[2])
         if c > 6:
             c = c % 6
@@ -256,8 +258,8 @@ if start:
 
             # print(x * 3 + m)
             print("动爻:", dy_c)
-            if dy_c <0:
-                dy_c = 6+dy_c
+            if dy_c < 0:
+                dy_c = 6 + dy_c
             print((x * 3 + m), dy_c)
             if (x * 3 + m) == dy_c:
                 show.append('\tO')
