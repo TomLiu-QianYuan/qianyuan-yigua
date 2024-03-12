@@ -162,7 +162,7 @@ time2 = time2.hour
 mode_to_select = st.selectbox('起卦方式', ['时间起卦', '报数起卦', '随机起卦'])
 # print(mode_to_select)
 if mode_to_select == '报数起卦':
-    three_num = st.text_input(label='请输入三个整数')
+    three_num = st.text_input(label='请输入三个整数',placeholder="123")
     if len(three_num) == 3:
         c = int(three_num[2])
         if c > 6:
