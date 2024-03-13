@@ -7,8 +7,7 @@ import streamlit as st
 import borax.calendars as bc
 
 di_zhi = {
-    "子": 0,
-    "亥": 1,
+    "子": 1,
     "丑": 2,
     "寅": 3,
     "卯": 4,
