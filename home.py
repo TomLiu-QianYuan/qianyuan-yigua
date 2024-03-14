@@ -110,29 +110,29 @@ def get_gua(a: int, b: int, c: int):
 def get_shi(time: int):
     print('tt', time)
     if 1 <= time < 3:
-        return di_zhi_list[0-1]
+        return di_zhi_list[1]
     elif 3 <= time < 5:
-        return di_zhi_list[1-1]
+        return di_zhi_list[2]
     elif 5 <= time < 7:
-        return di_zhi_list[2-1]
+        return di_zhi_list[3]
     elif 7 <= time < 9:
-        return di_zhi_list[3-1]
+        return di_zhi_list[4]
     elif 9 <= time < 11:
-        return di_zhi_list[4-1]
+        return di_zhi_list[5]
     elif 11 <= time < 13:
-        return di_zhi_list[5-1]
+        return di_zhi_list[6]
     elif 13 <= time < 15:
-        return di_zhi_list[6-1]
+        return di_zhi_list[7]
     elif 15 <= time < 17:
-        return di_zhi_list[7-1]
+        return di_zhi_list[8]
     elif 17 <= time < 19:
-        return di_zhi_list[8-1]
+        return di_zhi_list[9]
     elif 19 <= time < 21:
-        return di_zhi_list[9-1]
+        return di_zhi_list[10]
     elif 21 <= time < 23:
-        return di_zhi_list[10-1]
+        return di_zhi_list[11]
     elif 23 <= time or time < 1:
-        return di_zhi_list[11-1]
+        return di_zhi_list[0]
 
 
 st.set_page_config(page_title="乾元易卦",
