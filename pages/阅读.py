@@ -12,7 +12,7 @@ print(os.getcwd())
 
 
 def read_pdf(file_path):
-    # file = open(file_path, 'rb').read()
+    file = open(file_path, 'rb').read()
     if file_path is not None:
         # with open(file_path, "rb") as f:
         #     base64_pdf = base64.b64encode(f.read()).decode('utf-8')
