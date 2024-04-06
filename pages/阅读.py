@@ -14,20 +14,20 @@ print(os.getcwd())
 def read_pdf(file_path):
     # file = open(file_path, 'rb').read()
     if file_path is not None:
-        with open(file_path, "rb") as f:
-            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-        pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="800" height="1000" type="application/pdf">'
-        st.markdown(pdf_display, unsafe_allow_html=True)
+        # with open(file_path, "rb") as f:
+        #     base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+        # pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="800" height="1000" type="application/pdf">'
+        # st.markdown(pdf_display, unsafe_allow_html=True)
 
         # # print(file)
-        # with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
-        #     fp = Path(tmp_file.name)
-        #     fp.write_bytes(file)
-        #     with open(tmp_file.name, "rb") as f:
-        #         base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-        #     pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" ' \
-        #                   f'width="800" height="1000" type="application/pdf">'
-        #     st.markdown(pdf_display, unsafe_allow_html=True)
+        with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
+            fp = Path(tmp_file.name)
+            fp.write_bytes(file)
+            with open(tmp_file.name, "rb") as f:
+                base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+            pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" ' \
+                          f'width="800" height="1000" type="application/pdf">'
+            st.markdown(pdf_display, unsafe_allow_html=True)
 
 list_files = os.listdir("书籍")
 file_to_read = st.selectbox("书籍选择", list_files)
