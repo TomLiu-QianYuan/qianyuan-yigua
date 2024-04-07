@@ -77,7 +77,7 @@ def get_gua(a: int, b: int, c: int):
 
 st.code(os.getcwd())
 st.code(os.listdir())
-gua_list_ = os.listdir(f"{os.getcwd()}\\pages\\fk")
+gua_list_ = os.listdir(f"fk")
 gua_list = list()
 
 for i in gua_list_:
@@ -87,7 +87,7 @@ which_one = st.selectbox("选择卦例", gua_list)
 
 if which_one:
     context = open(
-        f"{os.getcwd()}\\pages\\fk\\{which_one}", 'r', encoding='utf-8'
+        f"\\fk\\{which_one}", 'r', encoding='utf-8'
     )
     context = json.load(context)
     st.code(context['time'])
