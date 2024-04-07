@@ -78,7 +78,10 @@ def get_gua(a: int, b: int, c: int):
 st.code(os.getcwd())
 st.code(os.listdir())
 st.code(os.listdir("pages"))
+st.code(os.listdir("pages\\fk"))
+
 gua_list_ = os.listdir("fk")
+
 gua_list = list()
 
 for i in gua_list_:
