@@ -1,10 +1,12 @@
 import datetime
-import os
+# import os
 import random
-
+from resources import *
 import pytz
 import streamlit as st
 import borax.calendars as bc
+
+dy_c = 0
 
 di_zhi = {
     "子": 1,
@@ -21,7 +23,7 @@ di_zhi = {
     "亥": 12,
 }
 di_zhi_list = [
-    
+
     "子",
     "丑",
     "寅",
@@ -67,8 +69,72 @@ gua_ming = {
     '000': "坤"
 }
 
-dy_c = 0
 
+def get_gua(a: int, b: int, c: int):
+    # get bin gua
+    global dy_c
+    if a == 0:
+        a = 8
+    if b == 0:
+        b = 8
+    if c == 0:
+        c = 6
+    a = (a + 8) % 8 - 1
+    b = (b + 8) % 8 - 1
+    c = (c + 6) % 6
+    zhu_gua = [
+        xian_tian_gua[a], xian_tian_gua[b]
+    ]
+    hu_gua = [xian_tian_gua[a][1] + xian_tian_gua[a][2] + xian_tian_gua[b][0],
+              xian_tian_gua[a][2] + xian_tian_gua[b][0] + xian_tian_gua[b][1]
+              ]
+    temp = list(xian_tian_gua[a] + xian_tian_gua[b])
+    # print('x',c)
+    # print('xz', 6-c)
+    print(temp)
+    if temp[-c] == '0':
+        # print('动阴')
+        temp[-c] = '1'
+    else:
+        # print('动阳')
+        temp[-c] = '0'
+        # print("-c:",-c)
+    dy_c = -c
+    # print(temp)
+    bian_gua = [temp[0] + temp[1] + temp[2], temp[3] + temp[4] + temp[5]]
+    return ([gua_ming[zhu_gua[0]], gua_ming[zhu_gua[1]]],
+            [gua_ming[hu_gua[0]], gua_ming[hu_gua[1]]],
+            [gua_ming[bian_gua[0]], gua_ming[bian_gua[1]]]
+            )
+
+
+def get_shi(time: int):
+    # 获取时辰
+    print('current hour:', time)
+    if 1 <= time < 3:
+        return di_zhi_list[1]
+    elif 3 <= time < 5:
+        return di_zhi_list[2]
+    elif 5 <= time < 7:
+        return di_zhi_list[3]
+    elif 7 <= time < 9:
+        return di_zhi_list[4]
+    elif 9 <= time < 11:
+        return di_zhi_list[5]
+    elif 11 <= time < 13:
+        return di_zhi_list[6]
+    elif 13 <= time < 15:
+        return di_zhi_list[7]
+    elif 15 <= time < 17:
+        return di_zhi_list[8]
+    elif 17 <= time < 19:
+        return di_zhi_list[9]
+    elif 19 <= time < 21:
+        return di_zhi_list[10]
+    elif 21 <= time < 23:
+        return di_zhi_list[11]
+    elif 23 <= time or time < 1:
+        return di_zhi_list[0]
 
 def get_gua(a: int, b: int, c: int):
     global dy_c
@@ -226,10 +292,7 @@ if start:
         three_num = [a, b, c]
     # 开始起卦
     result = list(get_gua(three_num[0], three_num[1], three_num[2]))
-    # print(result[0])
-    # print(three_num, 'b')
     show = []
-
     for x in range(0, 2):
 
         zhu_gua = str(gua_to_images[result[0][x]])
@@ -267,3 +330,9 @@ if start:
 
         # print(show)
     st.code("".join(show))
+    st.text("若需将此卦分享请复制:")
+    st.code(bc.LunarDate.from_solar_date(
+        time.year,
+        time.month,
+        time.day,
+    ).strftime('%G') + get_shi(time2) + "时" + str(three_num))
