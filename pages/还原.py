@@ -88,11 +88,11 @@ if str('[') in three_number and str(']') in three_number:
         three_number = three_number.split('[')[1]
     
         three_number = three_number.replace("[", '').replace("]", '').split('-')[0]
-        three_number = ''
-        three_num = []
+        
     except:
         st.warning("转换失败，请重新尝试，并确保格式正确")
-
+        three_number = ''
+        three_num = []
     print(three_number)
     try:
         three_num = list(three_number.split(','))
