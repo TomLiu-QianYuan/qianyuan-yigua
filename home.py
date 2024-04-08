@@ -1,7 +1,7 @@
 import datetime
 # import os
 import random
-# from resources import *
+from resources import *
 import pytz
 import streamlit as st
 import borax.calendars as bc
@@ -225,7 +225,7 @@ time = st.date_input("日期", value=datetime.datetime.now(pytz.timezone("ASIA/S
 time2 = st.time_input("时间", value=datetime.datetime.now(pytz.timezone("ASIA/ShangHai")))
 time2 = time2.hour
 # time = st.time_input("选择时间:",datetime)
-
+qs = st.text_input("占问:", placeholder="占问何事")
 mode_to_select = st.selectbox('起卦方式', ['时间起卦', '报数起卦', '随机起卦'])
 # print(mode_to_select)
 if mode_to_select == '报数起卦':
@@ -335,4 +335,4 @@ if start:
         time.year,
         time.month,
         time.day,
-    ).strftime('%G') + get_shi(time2) + "时" + str(three_num))
+    ).strftime('%G') + get_shi(time2) + "时" + str(three_num)+"-"+qs)
