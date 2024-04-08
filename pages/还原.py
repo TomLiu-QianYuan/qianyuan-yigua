@@ -77,7 +77,7 @@ def get_gua(a: int, b: int, c: int):
 
 
 three_number = st.text_input(label="请将卦编号复制于此",
-                             placeholder="例如:[1,2,3]")
+                             placeholder="例如:甲辰年戊辰月壬寅日酉时[1,2,3]-test")
 qs = ''
 time_gua = ''
 if str('[') in three_number and str(']') in three_number:
@@ -109,6 +109,9 @@ if three_num:
                           int(three_num[2])))
     st.text("占问:")
     st.code(qs)
+    st.text("时间:")
+    st.code(time_gua)
+    
     show = []
     for x in range(0, 2):
         zhu_gua = str(gua_to_images[result[0][x]])
