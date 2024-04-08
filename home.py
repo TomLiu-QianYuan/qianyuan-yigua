@@ -1,7 +1,7 @@
 import datetime
 # import os
 import random
-from resources import *
+# from resources import *
 import pytz
 import streamlit as st
 import borax.calendars as bc
