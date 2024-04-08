@@ -89,6 +89,7 @@ if str('[') in three_number and str(']') in three_number:
     
         three_number = three_number.replace("[", '').replace("]", '').split('-')[0]
         three_number = ''
+        three_num = []
     except:
         st.warning("转换失败，请重新尝试，并确保格式正确")
 
@@ -108,7 +109,7 @@ if str('[') in three_number and str(']') in three_number:
     except:
         st.warning("转换失败，请重新尝试")
         three_number = ''
-
+        three_num = []
 if three_num:
     # 开始起卦
     result = list(get_gua(int(three_num[0]),
