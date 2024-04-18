@@ -22,13 +22,16 @@ def xiao_liu_ren(first_number: int = 0, second_number: int = 0, third_number: in
     st.code(f"重点关注-人宫|结果:{liu_ren_gong[third_number_c]}")
 
 
-three_number = st.text_input(label="请输入三个数字", placeholder="如:123")
-if three_number:
+three_number = st.text_input(label="请输入第一个数字", placeholder="如:1")
+three_number_2 = st.text_input(label="请输入第二数字", placeholder="如:2")
+three_number_3 = st.text_input(label="请输入第三个数字", placeholder="如:3")
+start = st.button(label="开始计算")
+if three_number and three_number_2 and three_number_3 and start:
     try:
-        xiao_liu_ren(int(
-            three_number[0]),
-            int(three_number[1]),
-            int(three_number[2]))
+        xiao_liu_ren(
+            int(three_number),
+            int(three_number_2),
+            int(three_number_3))
 
     except Exception as error:
         st.error("请确保格式正确!")
