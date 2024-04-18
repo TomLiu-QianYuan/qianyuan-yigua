@@ -1,12 +1,21 @@
 import datetime
-# import os
 import random
-# from resources import *
 import pytz
 import streamlit as st
 import borax.calendars as bc
 
 dy_c = 0
+# gua_to_images = {
+#   "乾": base64.b64decode(b'4paA4paA4paA4paA4paA4paACuKWgOKWgOKWgOKWgOKWgOKWgAriloDiloDiloDiloDiloDiloA=').decode(),
+#     "兑":base64.b64decode(b'4paA4paAICDiloDiloAK4paA4paA4paA4paA4paA4paACuKWgOKWgOKWgOKWgOKWgOKWgA==').decode(),
+#     "离": base64.b64decode(b'4paA4paA4paA4paA4paA4paACuKWgOKWgCAg4paA4paACuKWgOKWgOKWgOKWgOKWgOKWgA==').decode(),
+#     "震": base64.b64decode(b'4paA4paAICDiloDiloAK4paA4paAICDiloDiloAK4paA4paA4paA4paA4paA4paA').decode(),
+#     "巽": base64.b64decode(b'4paA4paA4paA4paA4paA4paACuKWgOKWgOKWgOKWgOKWgOKWgAriloDiloAgIOKWgOKWgA==').decode(),
+#     "坎": base64.b64decode(b'4paA4paAICDiloDiloAK4paA4paA4paA4paA4paA4paACuKWgOKWgCAg4paA4paA').decode(),
+#     "艮": base64.b64decode(b'4paA4paA4paA4paA4paA4paACuKWgOKWgCAg4paA4paACuKWgOKWgCAg4paA4paA').decode(),
+#     "坤": base64.b64decode(b'4paA4paAICDiloDiloAK4paA4paAICDiloDiloAK4paA4paAICDiloDiloA=').decode(),
+#
+# }
 
 di_zhi = {
     "子": 1,
@@ -45,7 +54,6 @@ gua_to_images = {
     "坎": "▀▀  ▀▀\n▀▀▀▀▀▀\n▀▀  ▀▀",
     "艮": "▀▀▀▀▀▀\n▀▀  ▀▀\n▀▀  ▀▀",
     "坤": "▀▀  ▀▀\n▀▀  ▀▀\n▀▀  ▀▀",
-
 }
 # simple version
 xian_tian_gua = [
@@ -135,6 +143,7 @@ def get_shi(time: int):
         return di_zhi_list[11]
     elif 23 <= time or time < 1:
         return di_zhi_list[0]
+
 
 def get_gua(a: int, b: int, c: int):
     global dy_c
@@ -229,20 +238,21 @@ qs = st.text_input("占问:", placeholder="占问何事")
 mode_to_select = st.selectbox('起卦方式', ['时间起卦', '报数起卦', '随机起卦'])
 # print(mode_to_select)
 if mode_to_select == '报数起卦':
-    three_num = st.text_input(label='请输入三个整数', placeholder="321")
-    if len(three_num) < 3 and three_num != []:
-        st.warning("你需要填写3个数字，格式如:123")
-    elif len(three_num) == 3:
-        c = int(three_num[2])
+    # three_num = st.text_input(label='请输入三个整数', placeholder="321")
+    a = st.text_input(label="请输入第一个数字", placeholder="如:1")
+    b = st.text_input(label="请输入第二数字", placeholder="如:2")
+    c = st.text_input(label="请输入第三个数字", placeholder="如:3")
+
+    try:
+        c = int(c)
+        # c = int(three_num[2])
         if c > 6:
             c = c % 6
         elif c == 6 or c <= 0:
             c = 6
-
-        three_num = [int(three_num[0]), int(three_num[1]), int(three_num[2])]
-    elif len(three_num) > 3:
-        st.warning("你暂时只能填写三个数字哦")
-
+        three_num = [int(a), int(b), int(c)]
+    except Exception as err:
+        st.error("请保证格式正确\n" + str(err))
 if mode_to_select == '随机起卦':
     c = random.randint(1, 64)
     three_num = [random.randint(1, 64), random.randint(1, 64), c]
@@ -335,4 +345,4 @@ if start:
         time.year,
         time.month,
         time.day,
-    ).strftime('%G') + get_shi(time2) + "时" + str(three_num)+"-"+qs)
+    ).strftime('%G') + get_shi(time2) + "时" + str(three_num) + "-" + qs)
