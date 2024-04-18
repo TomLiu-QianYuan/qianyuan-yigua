@@ -242,17 +242,18 @@ if mode_to_select == '报数起卦':
     a = st.text_input(label="请输入第一个数字", placeholder="如:1")
     b = st.text_input(label="请输入第二数字", placeholder="如:2")
     c = st.text_input(label="请输入第三个数字", placeholder="如:3")
-
-    try:
-        c = int(c)
-        # c = int(three_num[2])
-        if c > 6:
-            c = c % 6
-        elif c == 6 or c <= 0:
-            c = 6
-        three_num = [int(a), int(b), int(c)]
-    except Exception as err:
-        st.error("请保证格式正确\n" + str(err))
+    if a and b and c:
+        try:
+    
+            c = int(c)
+            # c = int(three_num[2])
+            if c > 6:
+                c = c % 6
+            elif c == 6 or c <= 0:
+                c = 6
+            three_num = [int(a), int(b), int(c)]
+        except Exception as err:
+            st.error("请保证格式正确\n" + str(err))
 if mode_to_select == '随机起卦':
     c = random.randint(1, 64)
     three_num = [random.randint(1, 64), random.randint(1, 64), c]
