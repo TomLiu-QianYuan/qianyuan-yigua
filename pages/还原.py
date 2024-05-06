@@ -132,4 +132,4 @@ if three_num:
             show.append(hu_gua.split('\n')[m])
             show.append('\t\t')
             show.append(bian_gua.split('\n')[m])
-    st.code("".join(show))
+    st.text("".join(show))
