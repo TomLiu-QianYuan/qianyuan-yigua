@@ -212,7 +212,7 @@ def get_shi(time: int):
 
 st.set_page_config(page_title="乾元易卦",
                    page_icon=None,
-                   layout="centered",
+                   layout="wide",
                    initial_sidebar_state="auto",
                    menu_items=None)
 
