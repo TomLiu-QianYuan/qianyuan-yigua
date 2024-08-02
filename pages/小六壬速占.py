@@ -70,6 +70,10 @@ def get_gua(a: int, b: int, c: int):
     dy_c = -c
     # print(temp)
     bian_gua = [temp[0] + temp[1] + temp[2], temp[3] + temp[4] + temp[5]]
+    st.session_state = ([gua_ming[zhu_gua[0]], gua_ming[zhu_gua[1]]],
+                        [gua_ming[hu_gua[0]], gua_ming[hu_gua[1]]],
+                        [gua_ming[bian_gua[0]], gua_ming[bian_gua[1]]]
+                        )
     return ([gua_ming[zhu_gua[0]], gua_ming[zhu_gua[1]]],
             [gua_ming[hu_gua[0]], gua_ming[hu_gua[1]]],
             [gua_ming[bian_gua[0]], gua_ming[bian_gua[1]]]
