@@ -17,6 +17,11 @@ dy_c = 0
 #
 # }
 
+st.set_page_config(page_title="乾元-易卦",
+                   page_icon=None,
+                   layout="wide",
+                   initial_sidebar_state="auto",
+                   menu_items=None)
 di_zhi = {
     "子": 1,
     "丑": 2,
