@@ -78,47 +78,9 @@ gua_ming = {
 }
 
 
-def get_gua(a: int, b: int, c: int):
-    # get bin gua
-    global dy_c
-    if a == 0:
-        a = 8
-    if b == 0:
-        b = 8
-    if c == 0:
-        c = 6
-    a = (a + 8) % 8 - 1
-    b = (b + 8) % 8 - 1
-    c = (c + 6) % 6
-    zhu_gua = [
-        xian_tian_gua[a], xian_tian_gua[b]
-    ]
-    hu_gua = [xian_tian_gua[a][1] + xian_tian_gua[a][2] + xian_tian_gua[b][0],
-              xian_tian_gua[a][2] + xian_tian_gua[b][0] + xian_tian_gua[b][1]
-              ]
-    temp = list(xian_tian_gua[a] + xian_tian_gua[b])
-    # print('x',c)
-    # print('xz', 6-c)
-    print(temp)
-    if temp[-c] == '0':
-        # print('动阴')
-        temp[-c] = '1'
-    else:
-        # print('动阳')
-        temp[-c] = '0'
-        # print("-c:",-c)
-    dy_c = -c
-    # print(temp)
-    bian_gua = [temp[0] + temp[1] + temp[2], temp[3] + temp[4] + temp[5]]
-    return ([gua_ming[zhu_gua[0]], gua_ming[zhu_gua[1]]],
-            [gua_ming[hu_gua[0]], gua_ming[hu_gua[1]]],
-            [gua_ming[bian_gua[0]], gua_ming[bian_gua[1]]]
-            )
-
-
 def get_shi(time: int):
     # 获取时辰
-    print('current hour:', time)
+    # print('current hour:', time)
     if 1 <= time < 3:
         return di_zhi_list[1]
     elif 3 <= time < 5:
@@ -165,7 +127,7 @@ def get_gua(a: int, b: int, c: int):
     temp = list(xian_tian_gua[a] + xian_tian_gua[b])
     # print('x',c)
     # print('xz', 6-c)
-    print(temp)
+    # print(temp)
     if temp[-c] == '0':
         # print('动阴')
         temp[-c] = '1'
@@ -176,50 +138,28 @@ def get_gua(a: int, b: int, c: int):
     dy_c = -c
     # print(temp)
     bian_gua = [temp[0] + temp[1] + temp[2], temp[3] + temp[4] + temp[5]]
+    st.session_state = ([gua_ming[zhu_gua[0]], gua_ming[zhu_gua[1]]],
+                        [gua_ming[hu_gua[0]], gua_ming[hu_gua[1]]],
+                        [gua_ming[bian_gua[0]], gua_ming[bian_gua[1]]]
+                        )
+    # print(st.session_state)
+
     return ([gua_ming[zhu_gua[0]], gua_ming[zhu_gua[1]]],
             [gua_ming[hu_gua[0]], gua_ming[hu_gua[1]]],
             [gua_ming[bian_gua[0]], gua_ming[bian_gua[1]]]
             )
-
-
-def get_shi(time: int):
-    print('tt', time)
-    if 1 <= time < 3:
-        return di_zhi_list[1]
-    elif 3 <= time < 5:
-        return di_zhi_list[2]
-    elif 5 <= time < 7:
-        return di_zhi_list[3]
-    elif 7 <= time < 9:
-        return di_zhi_list[4]
-    elif 9 <= time < 11:
-        return di_zhi_list[5]
-    elif 11 <= time < 13:
-        return di_zhi_list[6]
-    elif 13 <= time < 15:
-        return di_zhi_list[7]
-    elif 15 <= time < 17:
-        return di_zhi_list[8]
-    elif 17 <= time < 19:
-        return di_zhi_list[9]
-    elif 19 <= time < 21:
-        return di_zhi_list[10]
-    elif 21 <= time < 23:
-        return di_zhi_list[11]
-    elif 23 <= time or time < 1:
-        return di_zhi_list[0]
 
 
 st.set_page_config(page_title="乾元易卦",
                    page_icon=None,
-                   layout="wide",
+                   layout="centered",
                    initial_sidebar_state="auto",
                    menu_items=None)
 
 # 导航栏
 # 设置初始页面为Home
-session_state = st.session_state
-session_state['page'] = '起卦'
+#session_state = st.session_state
+# session_state['page'] = '起卦'
 
 # page = st.sidebar.radio('导航', ['起卦', '书籍'])
 # if page == "起卦":
@@ -299,7 +239,7 @@ if start:
         elif c == 6:
             c = 6
 
-        print(a, b, c)
+        # print(a, b, c)
         three_num = [a, b, c]
     # 开始起卦
     result = list(get_gua(three_num[0], three_num[1], three_num[2]))
@@ -332,10 +272,10 @@ if start:
             show.append(bian_gua.split('\n')[m])
 
             # print(x * 3 + m)
-            print("动爻:", dy_c)
+            # print("动爻:", dy_c)
             if dy_c < 0:
                 dy_c = 6 + dy_c
-            print((x * 3 + m), dy_c)
+            # print((x * 3 + m), dy_c)
             if (x * 3 + m) == dy_c:
                 show.append('\tO')
 
@@ -347,3 +287,4 @@ if start:
         time.month,
         time.day,
     ).strftime('%G') + get_shi(time2) + "时" + str(three_num) + "-" + qs)
+    st.page_link(page="./pages/anayl.py",label="自动分析")
