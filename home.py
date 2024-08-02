@@ -150,12 +150,11 @@ def get_gua(a: int, b: int, c: int):
             )
 
 
-st.set_page_config(page_title="乾元易卦",
+st.set_page_config(page_title="乾元-易卦",
                    page_icon=None,
-                   layout="centered",
+                   layout="wide",
                    initial_sidebar_state="auto",
                    menu_items=None)
-
 # 导航栏
 # 设置初始页面为Home
 #session_state = st.session_state
